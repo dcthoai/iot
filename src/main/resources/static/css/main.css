@@ -1,0 +1,131 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-dark: #212529;
+    --bg-semi-dark: #282828;
+    --bg-gray: #3c3c3c;
+    --bg-semi-gray: #000000cc;
+    --bg-light: #fff;
+    --bg-hover-btn: #424649;
+    --text-danger: #ff0400;
+    --text-edit: #0099ff;
+    --color-border: rgba(59, 93, 80, 0.8);
+    --color-shadow: rgba(59, 93, 80, 0.5);
+}
+
+.content{
+    background-color: var(--bg-semi-gray);
+}
+
+.content .navbar-left{
+    width: 14rem;
+    padding-top: 4rem;
+    background-color: var(--bg-semi-dark);
+}
+
+.content .navbar-left .navbtn{
+    padding: 0.45rem 0;
+    padding-left: 2.75rem;
+    opacity: 0.75;
+    cursor: pointer;
+    color: var(--bg-light);
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.content .navbar-left .navbtn:hover{
+    opacity: 1;
+    background-color: var(--bg-hover-btn);
+}
+
+.content .navbar-left .accordion,
+.content .navbar-left .accordion-item,
+.content .navbar-left .accordion-button,
+.content .navbar-left .accordion-body{
+    background-color: var(--bg-semi-dark) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.content .navbar-left .accordion-button::after{
+    background-size: 0.75rem;
+    background-position: center;
+}
+
+.content .navbar-left .accordion-body{
+    background: #2b2f32;
+}
+
+.content .content-body {
+    background-color: var(--bg-light);
+    border-radius: 0.5rem;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.content .content-body .dashboard-content {
+    background: #fff;
+}
+
+input {
+    border: 1px solid #ccc;
+    color: #3d3d3d;
+    font-size: 19px;
+}
+
+input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+label {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.wrapper-overflow-scroll {
+    max-height: calc(100vh - 530px);
+    overflow-y: scroll;
+}
+
+.wrapper-overflow-scroll-full {
+    max-height: calc(100vh - 200px);
+    overflow-y: scroll;
+}
+
+.content .dashboard-content #story-image-demo,
+.content .dashboard-content #carousel-image-demo {
+    max-width: 100%;
+    overflow-x: scroll;
+    display: flex;
+}
+
+.content .dashboard-content .story-image-wrapper,
+.content .dashboard-content .carousel-image-wrapper {
+    position: relative;
+    width: fit-content;
+}
+
+.content .dashboard-content .story-image-wrapper:not(:first-child),
+.content .dashboard-content .carousel-image-wrapper:not(:first-child) {
+    margin-left: 1rem;
+}
+
+.content .dashboard-content .story-image-wrapper i.fa-xmark,
+.content .dashboard-content .carousel-image-wrapper i.fa-xmark {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    font-size: 30px;
+    background: #fff;
+    padding: 3px 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- CSS icon from Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- CSS Bootstrap -->
+    <link rel="stylesheet" th:href="${RESOURCES_URL} + 'assets/css/bootstrap.min.css'">
+    <!-- CSS custom -->
+    <link rel="stylesheet" th:href="${RESOURCES_URL} + 'assets/css/notify.css'">
+    <link rel="stylesheet" th:href="${RESOURCES_URL} + 'assets/css/login.css'">
+</head>
+
+<body>
+
+    <!-- Pop up to show notifications -->
+    <div id="notify">
+        <div class="d-flex align-items-center">
+            <div class="notify-status d-flex justify-content-center align-items-center px-3 px-md-4 fs-1">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-bug"></i>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <i class="fa-regular fa-comment-dots"></i>
+            </div>
+
+            <div class="notify-content">
+                <div id="notify-title"></div>
+                <div id="notify-message"></div>
+            </div>
+
+            <div id="notify-close-button" class="justify-content-center align-items-center px-2 px-md-3 fs-3">
+                <i class="w-75 p-3 text-secondary fa-solid fa-xmark"></i>
+            </div>
+        </div>
+
+        <div class="w-100 py-3 pe-4 justify-content-end notify-response" id="notify-response">
+            <button class="ok me-2 fw-bold" id="ok">Ok</button>
+            <button class="cancel fw-bold" id="cancel">Hủy</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="form-signin" class="form">
+            <h2>Đăng nhập hệ thống giám sát nhiệt độ, độ ẩm</h2>
+
+            <form id="form-login" class="mt-4">
+                <div class="input-box">
+                    <span class="label-error"></span>
+                    <input type="text" placeholder="Nhập username" id="username" name="username">
+                </div>
+                <div class="input-box">
+                    <span class="label-error"></span>
+                    <input type="password" placeholder="Nhập mật khẩu" id="password" name="password">
+                </div>
+                <div class="input-box button">
+                    <button class="py-2" type="submit">Đăng nhập</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        const BASE_URL = /*[[${RESOURCES_URL}]]*/ '';
+    </script>
+    <script th:src="${RESOURCES_URL} + 'assets/js/bootstrap.bundle.min.js'"></script>
+
+    <!-- Custom JS -->
+    <script th:src="${RESOURCES_URL} + 'assets/js/notify.js'"></script>
+    <script th:src="${RESOURCES_URL} + 'assets/js/validator.js'"></script>
+    <script th:src="${RESOURCES_URL} + 'assets/js/login.js'"></script>
+</body>
+</html>
