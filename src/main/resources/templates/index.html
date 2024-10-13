@@ -17,14 +17,15 @@
         <h1>Hệ thống giám sát nhiệt độ và độ ẩm</h1>
     </header>
 
-    <article class="container">
+    <article class="container pb-5 mb-5">
         <section class="row mt-5">
             <div class="col-12 text-end">
-                <select id="timePeriod">
-                    <option value="1">Giờ</option>
-                    <option value="2">Ngày</option>
-                    <option value="3">Tuần</option>
-                    <option value="4">Tháng</option>
+                <h5 class="fw-medium mb-3">Thay đổi định dạng thống kê dữ liệu</h5>
+                <select id="timePeriod" class="rounded px-2 py-1 fs-5">
+                    <option value="1">1 giờ qua</option>
+                    <option value="2">1 ngày qua</option>
+                    <option value="3">1 tuần qua</option>
+                    <option value="4">30 ngày qua</option>
                 </select>
             </div>
 
@@ -37,22 +38,33 @@
             </div>
         </section>
 
-        <section class="mt-5">
-            <h1>Điều khiển ESP32</h1>
-            <button class="button" onclick="sendRequest('api/esp32/led/on')">Turn On LED</button>
-            <button class="button" onclick="sendRequest('api/esp32/led/off')">Turn Off LED</button>
-            <br><br>
-            <button class="button" onclick="sendRequest('api/esp32/lcd/on')">Turn On LCD</button>
-            <button class="button" onclick="sendRequest('api/esp32/lcd/off')">Turn Off LCD</button>
-            <br><br>
-            <div>
-                <input type="text" id="message" class="input-field" placeholder="Message">
-                <button class="button" onclick="notifyLCD()">Notify LCD</button>
+        <section class="mt-5 pt-5">
+            <h1 class="w-100 text-center mb-5">Điều khiển ESP32</h1>
+
+            <h5>Trạng thái LED: <span class="text-bg-primary rounded py-1 px-3 fs-6" id="led-status">Bật</span></h5>
+            <div class="w-100 d-flex mt-4">
+                <button class="button" onclick="sendRequest('api/esp32/led/on')">Bật đèn LED</button>
+                <button class="button ms-3" onclick="sendRequest('api/esp32/led/off')">Tắt đèn LED</button>
+            </div>
+
+            <h5 class="mt-5">Trạng thái màn hình LCD: <span class="text-bg-primary rounded py-1 px-3 fs-6" id="lcd-status">Bật</span></h5>
+            <div class="w-100 d-flex mt-4">
+                <button class="button" onclick="sendRequest('api/esp32/lcd/on')">Bật màn hình LCD</button>
+                <button class="button ms-3" onclick="sendRequest('api/esp32/lcd/off')">Tắt màn hình LCD</button>
+            </div>
+
+            <h5 class="mt-5">Gửi thông báo lên màn hình LCD</h5><br/>
+            <div class="w-100 d-flex mt-4">
+                <input type="text" id="message" class="input-field" placeholder="Tin nhắn kiểm tra">
+                <button class="button ms-3 px-4" onclick="notifyLCD()">Gửi</button>
             </div>
             <br>
             <div>
-                <input type="number" id="refreshTime" class="input-field" placeholder="Refresh Time (ms)">
-                <button class="button" onclick="changeRefreshTime()">Change Refresh Time</button>
+                <label for="timePeriod"><h5 class="mt-5">Thay đổi thời gian làm mới dữ liệu của cảm biến DHT11</h5></label><br/>
+                <div class="w-100 d-flex mt-3">
+                    <input type="number" id="refreshTime" class="input-field" placeholder="Thời gian làm mới dữ liệu của cảm biến (ms)">
+                    <button class="button ms-3" onclick="changeRefreshTime()">Cập nhật</button>
+                </div>
             </div>
         </section>
     </article>

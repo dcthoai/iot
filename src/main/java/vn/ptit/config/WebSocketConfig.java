@@ -18,6 +18,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
         this.esp32WebSocketHandler = esp32WebSocketHandler;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(esp32WebSocketHandler, "/esp32").setAllowedOrigins("*");

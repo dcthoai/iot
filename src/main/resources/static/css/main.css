@@ -7,7 +7,7 @@
 
 .button {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 4px 12px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
@@ -16,8 +16,9 @@
     color: #fff;
     background-color: #4CAF50;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+    box-shadow: 0 2px #999;
+    border-radius: 0.5rem;
+    transition: all ease 0.2s;
 }
 
 .button:hover {
@@ -26,12 +27,19 @@
 
 .button:active {
     background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
 }
 
 .input-field {
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 10px;
+    width: 400px;
+    max-width: calc(100% - 150px);
+    padding: 0.5rem 0;
+    border: 0.0625rem solid rgba(59, 93, 80, 0.8);
+    border-radius: 0.5rem;
+    text-indent: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: all ease 0.2s;
 }

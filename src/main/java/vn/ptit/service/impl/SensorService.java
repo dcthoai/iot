@@ -222,7 +222,7 @@ public class SensorService implements ISensorService {
             if (avgTemp > 35) {
                 condition.append("It's very hot. ");
             } else if (avgTemp > 25) {
-                condition.append("The weather is warm. ");
+                condition.append("The weather is normal. ");
             } else if (avgTemp < 15) {
                 condition.append("It's quite cold. ");
             }

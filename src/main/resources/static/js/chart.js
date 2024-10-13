@@ -46,18 +46,18 @@ function getChartOptions(chartType, chartLabel, dataLabel, chartData, background
 
 function getMonthsAndDays(year) {
     const months = {
-        "January": 31,
-        "February": (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) ? 29 : 28,
-        "March": 31,
-        "April": 30,
-        "May": 31,
-        "June": 30,
-        "July": 31,
-        "August": 31,
-        "September": 30,
-        "October": 31,
-        "November": 30,
-        "December": 31
+        "1": 31,
+        "2": (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) ? 29 : 28,
+        "3": 31,
+        "4": 30,
+        "5": 31,
+        "6": 30,
+        "7": 31,
+        "8": 31,
+        "9": 30,
+        "10": 31,
+        "11": 30,
+        "12": 31
     };
 
     for (let month in months) {
@@ -84,17 +84,6 @@ let temperatureChart;
 let humidityChart;
 let temperatureChartOptions = {};
 let humidityChartOptions = {};
-let datasetLabels = [];
-
-function drawChart(labels, temperatures, humidity, bottomLabel) {
-    temperatureChartOptions.labels = labels;
-    temperatureChartOptions.options.scales.x.title.text = bottomLabel;
-    temperatureChartOptions.data.datasets = temperatures;
-
-    humidityChartOptions.labels = labels;
-    humidityChartOptions.options.scales.x.title.text = bottomLabel;
-    humidityChartOptions.data.datasets = humidity;
-}
 
 window.addEventListener('DOMContentLoaded', async () => {
     const response = await getDataStatistic(1);
@@ -102,12 +91,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (response && response.success) {
         const temperatures = response.data.map(entry => entry.temperature);
         const humidity = response.data.map(entry => entry.humidity);
-        datasetLabels = chartDataLabels.hour;
 
         temperatureChartOptions = getChartOptions(
             'line',
             'Nhiệt độ (°C)',
-            datasetLabels,
+            chartDataLabels.hour,
             temperatures,
             'rgb(255, 13, 13)',
             'rgb(255, 13, 13)'
@@ -116,7 +104,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         humidityChartOptions = getChartOptions(
             'bar',
             'Độ ẩm (%)',
-            datasetLabels,
+            chartDataLabels.hour,
             humidity,
             'rgba(0, 135, 206, 0.5)',
             'rgb(0, 135, 206)'
@@ -138,10 +126,24 @@ selectElement.addEventListener('change', async function() {
         const humidity = response.data.map(entry => entry.humidity);
 
         temperatureChartOptions.data.datasets[0].data = temperatures;
-        temperatureChartOptions.labels = chartDataLabels[selectedValue];
-
         humidityChartOptions.data.datasets[0].data = humidity;
-        humidityChartOptions.labels = chartDataLabels[selectedValue];
+
+        if (selectedValue == 1) {
+            humidityChartOptions.data.labels = chartDataLabels.hour;
+            temperatureChartOptions.data.labels = chartDataLabels.hour;
+        } else if (selectedValue == 2) {
+            humidityChartOptions.data.labels = chartDataLabels.day;
+            temperatureChartOptions.data.labels = chartDataLabels.day;
+        } else if (selectedValue == 3) {
+            humidityChartOptions.data.labels = chartDataLabels.week;
+            temperatureChartOptions.data.labels = chartDataLabels.week;
+        } else if (selectedValue == 4) {
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear();
+            const currentMonth = currentDate.getMonth() + 1;
+            humidityChartOptions.data.labels = getMonthsAndDays(currentYear)[currentMonth];
+            temperatureChartOptions.data.labels = getMonthsAndDays(currentYear)[currentMonth];
+        }
 
         temperatureChart.update();
         humidityChart.update();
