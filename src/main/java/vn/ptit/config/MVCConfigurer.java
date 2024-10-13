@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MVCConfigurer implements WebMvcConfigurer {
 
     @Value("${cors.domain.accept}")
-    private String[] acceptedDomains;
+    private String acceptedDomains;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -20,7 +20,7 @@ public class MVCConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
+        registry.addMapping(acceptedDomains)
                 .allowedOrigins("http://localhost:8080")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")

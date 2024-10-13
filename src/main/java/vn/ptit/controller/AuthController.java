@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import vn.ptit.dto.request.UserRequest;
-import vn.ptit.model.ResponseJSON;
+import vn.ptit.dto.response.ResponseJSON;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

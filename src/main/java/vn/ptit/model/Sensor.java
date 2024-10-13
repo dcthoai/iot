@@ -3,11 +3,10 @@ package vn.ptit.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.text.DecimalFormat;
 
 @Entity
-@Table(name = "temperature")
-public class Temperature extends AbstractModel {
+@Table(name = "sensor")
+public class Sensor extends AbstractModel {
 
     @Column(name = "temperature")
     private Float temperature;
@@ -15,18 +14,18 @@ public class Temperature extends AbstractModel {
     @Column(name = "humidity")
     private Float humidity;
 
-    public Temperature() {
+    public Sensor() {
         super();
     }
 
-    public Temperature(Float temperature, Float humidity) {
+    public Sensor(Float temperature, Float humidity) {
         super();
         this.temperature = temperature;
         this.humidity = humidity;
     }
 
     public Float getTemperature() {
-        return Float.valueOf(new DecimalFormat("#.##").format(temperature));
+        return temperature;
     }
 
     public void setTemperature(Float temperature) {
@@ -34,7 +33,7 @@ public class Temperature extends AbstractModel {
     }
 
     public Float getHumidity() {
-        return Float.valueOf(new DecimalFormat("#.##").format(humidity));
+        return humidity;
     }
 
     public void setHumidity(Float humidity) {

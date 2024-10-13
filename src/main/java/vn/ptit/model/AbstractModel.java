@@ -1,7 +1,7 @@
 package vn.ptit.model;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.sql.Timestamp;
 
 @MappedSuperclass
 public class AbstractModel {
@@ -11,7 +11,7 @@ public class AbstractModel {
     private Integer id;
 
     @Column(name = "created_date")
-    private Instant createdDate;
+    private Timestamp createdDate;
 
     public AbstractModel() {}
 
@@ -23,11 +23,11 @@ public class AbstractModel {
         this.id = id;
     }
 
-    public Instant getCreatedDate() {
+    public Timestamp getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Instant createdDate) {
+    public void setCreatedDate(Timestamp createdDate) {
         this.createdDate = createdDate;
     }
 }

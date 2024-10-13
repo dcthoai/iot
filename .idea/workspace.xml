@@ -5,56 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5750f558-4a7d-40be-81ce-46ebe4d00f95" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iot.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/IOTApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/ServletInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/config/MVCConfigurer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/config/StaticResourceControllerAdvice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/config/WebSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/TemperatureStatisticController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/request/UserRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/model/AbstractModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/model/ResponseJSON.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/model/Temperature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/TemperatureRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/UserRepositoryCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/impl/TemperatureRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/impl/UserRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/security/AuthEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/security/AuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/ITemperatureService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/TemperatureService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/notify.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/notify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/validator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/common/Common.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/common/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/ESP32WebSocketHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/request/SensorDataRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/SensorRepositoryCustom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/DataAnalysisTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/chart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/IOTApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/IOTApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/config/MVCConfigurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/config/MVCConfigurer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/TemperatureStatisticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/model/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/model/AbstractModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/model/ResponseJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/ResponseJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/model/Temperature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/model/Sensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/TemperatureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/SensorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/impl/TemperatureRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/impl/SensorRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/security/AuthEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/security/AuthEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/ITemperatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/ISensorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/TemperatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,10 +45,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
-        <option value="JavaScript File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -85,30 +66,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.iot [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.IOTApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Workspaces/Java/Web/SpringBoot/iot/src/main/java/vn/ptit/security&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.iot [clean].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.IOTApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Workspaces/Projects/SoftDreams/CIC/adminweb",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\src\main\java\vn\ptit\security" />
@@ -148,7 +132,16 @@
       <workItem from="1728446954607" duration="4675000" />
       <workItem from="1728455402229" duration="3484000" />
       <workItem from="1728459004829" duration="15000" />
-      <workItem from="1728459479959" duration="325000" />
+      <workItem from="1728459479959" duration="500000" />
+      <workItem from="1728463589727" duration="1133000" />
+      <workItem from="1728520328953" duration="8366000" />
+      <workItem from="1728530852807" duration="2784000" />
+      <workItem from="1728557635078" duration="22000" />
+      <workItem from="1728660125285" duration="3731000" />
+      <workItem from="1728696739814" duration="3978000" />
+      <workItem from="1728720487146" duration="6433000" />
+      <workItem from="1728738092887" duration="11987000" />
+      <workItem from="1728777232267" duration="15090000" />
     </task>
     <servers />
   </component>

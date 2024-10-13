@@ -2,9 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ESP32 Controller</title>
+
+    <!-- CSS icon from Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- CSS Bootstrap -->
+    <link rel="stylesheet" th:href="${RESOURCES_URL} + 'assets/css/bootstrap.min.css'">
+    <!-- CSS custom -->
+    <link rel="stylesheet" th:href="${RESOURCES_URL} + 'assets/css/notify.css'">
+    <link rel="stylesheet" th:href="${RESOURCES_URL} + 'assets/css/main.css'">
 </head>
 <body>
-hello
+    <header class="w-100 text-center my-5">
+        <h1>Hệ thống giám sát nhiệt độ và độ ẩm</h1>
+    </header>
+
+    <article class="container">
+        <section class="row mt-5">
+            <div class="col-12 text-end">
+                <select id="timePeriod">
+                    <option value="1">Giờ</option>
+                    <option value="2">Ngày</option>
+                    <option value="3">Tuần</option>
+                    <option value="4">Tháng</option>
+                </select>
+            </div>
+
+            <div class="chart col-12 col-lg-6 p-4" style="aspect-ratio: 5/3">
+                <canvas class="w-100 h-100" id="temperatureChart" style="cursor: pointer"></canvas>
+            </div>
+
+            <div class="chart col-12 col-lg-6 p-4" style="aspect-ratio: 5/3">
+                <canvas class="w-100 h-100" id="humidityChart" style="cursor: pointer"></canvas>
+            </div>
+        </section>
+
+        <section class="mt-5">
+            <h1>Điều khiển ESP32</h1>
+            <button class="button" onclick="sendRequest('api/esp32/led/on')">Turn On LED</button>
+            <button class="button" onclick="sendRequest('api/esp32/led/off')">Turn Off LED</button>
+            <br><br>
+            <button class="button" onclick="sendRequest('api/esp32/lcd/on')">Turn On LCD</button>
+            <button class="button" onclick="sendRequest('api/esp32/lcd/off')">Turn Off LCD</button>
+            <br><br>
+            <div>
+                <input type="text" id="message" class="input-field" placeholder="Message">
+                <button class="button" onclick="notifyLCD()">Notify LCD</button>
+            </div>
+            <br>
+            <div>
+                <input type="number" id="refreshTime" class="input-field" placeholder="Refresh Time (ms)">
+                <button class="button" onclick="changeRefreshTime()">Change Refresh Time</button>
+            </div>
+        </section>
+    </article>
+
+    <script th:inline="javascript">
+        const BASE_URL = /*[[${RESOURCES_URL}]]*/ '';
+    </script>
+
+    <script th:src="${RESOURCES_URL} + 'assets/js/bootstrap.bundle.min.js'"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:src="${RESOURCES_URL} + 'assets/js/chart.js'"></script>
+    <script th:src="${RESOURCES_URL} + 'assets/js/main.js'"></script>
 </body>
 </html>
