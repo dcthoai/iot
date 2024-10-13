@@ -25,6 +25,8 @@ public class SensorService implements ISensorService {
 
     private final SensorRepository sensorRepository;
     private Integer ledLevelAction = 1;
+    private String analyzeListData;
+    private Long timeAnalyze;
 
     public SensorService(SensorRepository sensorRepository) {
         this.sensorRepository = sensorRepository;
@@ -129,7 +131,13 @@ public class SensorService implements ISensorService {
                 break;
         }
 
+        analyzeListData = analyzeData(fromDate.toString(), toDate.toString());
+
         return getAveragedData(fromDate, toDate, durationTime, type);
+    }
+
+    public String getAnalyzeListData() {
+        return analyzeListData;
     }
 
     @Override
@@ -173,18 +181,22 @@ public class SensorService implements ISensorService {
                 .orElseThrow(() -> new RuntimeException("No humidity data"));
 
         // First time and last time of data
-        Timestamp firstTimeAnalysis = sensorsDataList.get(0).getCreatedDate();
-        Timestamp lastTimeAnalysis = sensorsDataList.get(sensorsDataList.size() - 1).getCreatedDate();
+        Timestamp lastTimeAnalysis = sensorsDataList.get(0).getCreatedDate();
+        Timestamp firstTimeAnalysis = sensorsDataList.get(sensorsDataList.size() - 1).getCreatedDate();
 
         JSONObject analysisResult = new JSONObject();
-        analysisResult.put("avgTemperature", avgTemperature.orElse(0.0));
-        analysisResult.put("avgHumidity", avgHumidity.orElse(0.0));
+
+        float avgTemperatureFormat = (float) avgTemperature.orElse(0.0);
+        float avgHumidityFormat = (float) avgHumidity.orElse(0.0);
+
+        analysisResult.put("avgTemperature",  (float) (Math.round(avgTemperatureFormat * 100.0) / 100.0));
+        analysisResult.put("avgHumidity", (float) (Math.round(avgHumidityFormat * 100.0) / 100.0));
         analysisResult.put("maxTemperature", maxTemperature);
         analysisResult.put("minTemperature", minTemperature);
         analysisResult.put("maxHumidity", maxHumidity);
         analysisResult.put("minHumidity", minHumidity);
-        analysisResult.put("firstTimeAnalysis", firstTimeAnalysis.toString());
-        analysisResult.put("lastTimeAnalysis", lastTimeAnalysis.toString());
+        analysisResult.put("firstTimeAnalysis", Common.convertTimestampToString(firstTimeAnalysis, "HH:mm:ss dd/MM/yyyy"));
+        analysisResult.put("lastTimeAnalysis", Common.convertTimestampToString(lastTimeAnalysis, "HH:mm:ss dd/MM/yyyy"));
 
         return analysisResult.toString();
     }
@@ -193,7 +205,7 @@ public class SensorService implements ISensorService {
     public String getWeatherForecast() {
         // Analysis data
         Timestamp toDate = Timestamp.from(Instant.now());
-        Timestamp fromDate = Timestamp.from(ZonedDateTime.now().minusMinutes(Constants.ANALYZE_REFRESH_DATA_TIME).toInstant());
+        Timestamp fromDate = Timestamp.from(ZonedDateTime.now().minusMinutes(timeAnalyze).toInstant());
         String fromDateStr = Common.convertTimestampToString(fromDate);
         String toDateStr = Common.convertTimestampToString(toDate);
 
@@ -220,28 +232,29 @@ public class SensorService implements ISensorService {
 
             // Analyze temperature
             if (avgTemp > 35) {
-                condition.append("It's very hot. ");
+                condition.append("The temperature is very hot. ");
             } else if (avgTemp > 25) {
-                condition.append("The weather is normal. ");
+                condition.append("The temperature is normal. ");
+            } else if (avgTemp >= 15) {
+                condition.append("The temperature is so cool. ");
             } else if (avgTemp < 15) {
-                condition.append("It's quite cold. ");
+                condition.append("The temperature is cold. ");
             }
 
+            System.out.println("hum: " + avgHum);
             // Analyze humidity
             if (avgHum > 80) {
                 condition.append("High chance of rain. ");
-            } else if (avgHum < 30) {
-                condition.append("The air is very dry. ");
-            } else if (avgHum < 50) {
+            } else if (avgHum > 50) {
+                condition.append("The air is dry. ");
+            } else if (avgHum > 30) {
                 condition.append("The air is a bit dry. ");
+            } else if (avgHum <= 30){
+                condition.append("The air is a very dry. ");
             }
 
-            if (avgTemp > 35 || avgTemp < 15 || avgHum < 50 || avgHum > 80) {
-                this.ledLevelAction = Constants.LED_RED_COLOR;  // Bad weather
-            } else if (avgTemp < 28 && avgTemp > 24 && avgHum > 60 && avgHum < 70) {
-                this.ledLevelAction = Constants.LED_GREEN_COLOR; // Good weather
-            } else {
-                this.ledLevelAction = Constants.LED_GOLD_COLOR; // Normal weather
+            if (avgTemp > 35 || avgTemp < 15 || avgHum < 30 || avgHum > 80) {
+                this.ledLevelAction = Constants.LED_WARNING;  // Bad weather
             }
         }
 
@@ -254,5 +267,9 @@ public class SensorService implements ISensorService {
 
     public Integer getLedLevelAction() {
         return ledLevelAction;
+    }
+
+    public void setTimeAnalyze(Long timeAnalyze) {
+        this.timeAnalyze = timeAnalyze;
     }
 }

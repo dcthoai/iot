@@ -54,6 +54,7 @@ public class ESP32WebSocketHandler extends TextWebSocketHandler {
     }
 
     @Override
+    @SuppressWarnings("unused")
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         System.out.println("Received from ESP32: " + message.getPayload());
 

@@ -28,4 +28,10 @@ public class Common {
         LocalDateTime localDateTime = timestamp.toLocalDateTime();
         return localDateTime.format(formatter);
     }
+
+    public static String convertTimestampToString(Timestamp timestamp, String template) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(template);
+        LocalDateTime localDateTime = timestamp.toLocalDateTime();
+        return localDateTime.format(formatter);
+    }
 }

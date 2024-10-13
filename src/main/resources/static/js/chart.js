@@ -85,12 +85,39 @@ let humidityChart;
 let temperatureChartOptions = {};
 let humidityChartOptions = {};
 
+// Function to fetch analysis data from the API
+async function fetchAnalysisData() {
+    console.log("Fetch data.");
+
+    try {
+        const response = await fetch(BASE_URL + `api/statistic/analyze`);
+
+        if (response.ok) {
+            const analysisResult = await response.json();
+
+            document.getElementById('avgTemperature').innerHTML = analysisResult.avgTemperature + ' °C';
+            document.getElementById('avgHumidity').innerHTML = analysisResult.avgHumidity + ' %';
+            document.getElementById('maxTemperature').innerHTML = analysisResult.maxTemperature + ' °C';
+            document.getElementById('minTemperature').innerHTML = analysisResult.minTemperature + ' °C';
+            document.getElementById('maxHumidity').innerHTML = analysisResult.maxHumidity + ' %';
+            document.getElementById('minHumidity').innerHTML = analysisResult.minHumidity + ' %';
+            document.getElementById('firstTimeAnalysis').innerHTML = analysisResult.firstTimeAnalysis;
+            document.getElementById('lastTimeAnalysis').innerHTML = analysisResult.lastTimeAnalysis;
+        } else {
+            console.error('Failed to fetch data from the server.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
 window.addEventListener('DOMContentLoaded', async () => {
     const response = await getDataStatistic(1);
 
     if (response && response.success) {
         const temperatures = response.data.map(entry => entry.temperature);
         const humidity = response.data.map(entry => entry.humidity);
+        fetchAnalysisData();
 
         temperatureChartOptions = getChartOptions(
             'line',
@@ -149,6 +176,7 @@ selectElement.addEventListener('change', async function() {
         humidityChart.update();
         console.log(`Updated charts with ${selectedValue} data.`);
     } else {
+        openPopupNotify('Thất bại', '', 'error');
         console.error("Failed to fetch data or update charts.");
     }
 });

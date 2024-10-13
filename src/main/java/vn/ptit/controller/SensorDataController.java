@@ -30,9 +30,7 @@ public class SensorDataController {
     }
 
     @GetMapping("/analyze")
-    public ResponseEntity<?> getDataAnalyze(@RequestParam String fromDate,
-                                            @RequestParam String toDate) {
-        String results = sensorService.analyzeData(fromDate, toDate);
-        return ResponseJSON.ok("Get data analyze successfully.", results);
+    public String getDataAnalyze() {
+        return sensorService.getAnalyzeListData();
     }
 }
