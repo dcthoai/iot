@@ -31,9 +31,9 @@ public class ESP32WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        System.out.println("\n\nNew ESP32 device connected: " + session.getId());
         esp32Sessions.put(session.getId(), session);
         dataAnalysisTask.startAnalysisTask(esp32Sessions); // Start analyze temperature and humidity data
-        System.out.println("New ESP32 device connected: " + session.getId());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ESP32WebSocketHandler extends TextWebSocketHandler {
         for (WebSocketSession session : esp32Sessions.values()) {
             if (session.isOpen()) {
                 session.sendMessage(new TextMessage(message));
-                System.out.println("Send to ESP32: " + session.getId());
+                System.out.println("Send messages to ESP32: " + session.getId() + "\n");
             }
         }
     }

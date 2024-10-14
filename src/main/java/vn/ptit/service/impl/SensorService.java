@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class SensorService implements ISensorService {
 
     private final SensorRepository sensorRepository;
-    private Integer ledLevelAction = 1;
+    private Integer ledLevelAction = Constants.LED_NORMAL;
     private Long timeAnalyze;
 
     public SensorService(SensorRepository sensorRepository) {
@@ -253,29 +253,30 @@ public class SensorService implements ISensorService {
 
             // Analyze temperature
             if (avgTemp > 35) {
-                condition.append("The temperature is very hot. ");
+                condition.append("The temperature is very   hot. ");
             } else if (avgTemp > 25) {
-                condition.append("The temperature is normal. ");
+                condition.append("The temperature is normal ");
             } else if (avgTemp >= 15) {
-                condition.append("The temperature is so cool. ");
+                condition.append("The temperature is so     cool ");
             } else if (avgTemp < 15) {
-                condition.append("The temperature is cold. ");
+                condition.append("The temperature is cold.  ");
             }
 
-            System.out.println("hum: " + avgHum);
             // Analyze humidity
             if (avgHum > 80) {
-                condition.append("High chance of rain. ");
+                condition.append("High chance of rain.");
             } else if (avgHum > 50) {
                 condition.append("The air is dry. ");
             } else if (avgHum > 30) {
-                condition.append("The air is a bit dry. ");
+                condition.append("The air is a bit dry.");
             } else if (avgHum <= 30){
-                condition.append("The air is a very dry. ");
+                condition.append("The air is a very dry.");
             }
 
             if (avgTemp > 35 || avgTemp < 15 || avgHum < 30 || avgHum > 80) {
                 this.ledLevelAction = Constants.LED_WARNING;  // Bad weather
+            } else {
+                this.ledLevelAction = Constants.LED_NORMAL; // Normal weather
             }
         }
 

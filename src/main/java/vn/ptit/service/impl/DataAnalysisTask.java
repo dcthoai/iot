@@ -43,13 +43,14 @@ public class DataAnalysisTask {
             System.out.println("Starting data analysis task...");
             setupEsp32Config();
 
-            scheduledTask = scheduler.scheduleAtFixedRate(this::analyzeAndSendData, 60, timeToRefreshDataAnalyze, TimeUnit.SECONDS);
+            scheduledTask = scheduler.scheduleAtFixedRate(this::analyzeAndSendData, 0, timeToRefreshDataAnalyze, TimeUnit.SECONDS);
         }
     }
 
     public void restartAnalyzeTask() {
+        System.out.println("Restart data analyze task...");
         setupEsp32Config();
-        scheduledTask = scheduler.scheduleAtFixedRate(this::analyzeAndSendData, 60, timeToRefreshDataAnalyze, TimeUnit.SECONDS);
+        scheduledTask = scheduler.scheduleAtFixedRate(this::analyzeAndSendData, 0, timeToRefreshDataAnalyze, TimeUnit.SECONDS);
     }
 
     // Cancel task
@@ -81,15 +82,13 @@ public class DataAnalysisTask {
                 try {
                     session.sendMessage(new TextMessage(notify));
 
-                    if (ledAction == 1) {
+                    if (ledAction.equals(Constants.LED_WARNING)) {
                         // Send request to warning LED when bad weather
                         String ledNotify = ResponseJSON.socketOk("Turn on LED warning", Constants.LED_NOTIFY);
                         session.sendMessage(new TextMessage(ledNotify));
                     }
 
-                    System.out.println("Send notify to ESP32 after analyze data: " + session.getId());
-                    System.out.println("Message: " + message);
-                    System.out.println("Led notify: " + ledAction);
+                    System.out.println("\nSend notify to ESP32 after analyze data: " + message + "\n");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -105,8 +104,10 @@ public class DataAnalysisTask {
                 try {
                     session.sendMessage(new TextMessage(notify));
 
-                    System.out.println("Send config to ESP32: " + session.getId());
-                    System.out.println("Message: " + message);
+                    if (action.equals(Constants.CHANGE_REFRESH_TIME))
+                        System.out.println("Send config to ESP32: Set refresh time of DTH11 = " + message + "ms");
+                    else
+                        System.out.println("Send config to ESP32: " + message);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -119,6 +120,8 @@ public class DataAnalysisTask {
 
         if (Objects.nonNull(esp32Config)) {
             try {
+                System.out.println("Get ESP32 default config from database...\n");
+
                 if (esp32Config.getLcdStatus() == 1) {
                     sendConfigToEsp32("Config LCD status: ON", Constants.LCD_ON);
                 } else {
@@ -132,21 +135,18 @@ public class DataAnalysisTask {
                 }
 
                 if (esp32Config.getTimeRefresh() > 0) {
-                    sendConfigToEsp32("Config time refresh DHT read data status: " + esp32Config.getTimeRefresh(), Constants.LCD_ON);
+                    sendConfigToEsp32(esp32Config.getTimeRefresh().toString(), Constants.CHANGE_REFRESH_TIME);
                 }
 
                 if (timeToRefreshDataAnalyze > 0) {
                     this.timeToRefreshDataAnalyze = esp32Config.getTimeAnalyze();
                     sensorService.setTimeAnalyze(esp32Config.getTimeAnalyze());
+                    System.out.println("Set timeout for each data analysis and send notify to esp32: " + timeToRefreshDataAnalyze + "s");
                 }
             } catch (Exception e) {
                 System.out.println("Failed to get ESP32 config.");
                 e.printStackTrace();
             }
         }
-    }
-
-    public Long getTimeToRefreshDataAnalyze() {
-        return this.timeToRefreshDataAnalyze;
     }
 }

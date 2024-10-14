@@ -69,8 +69,12 @@ public class SensorDataController {
         try {
             Esp32Config esp32Config = esp32ConfigService.getEsp32Config();
             esp32Config.setTimeAnalyze(seconds);
-            esp32ConfigService.updateEsp32Config(esp32Config);
-            dataAnalysisTask.restartAnalyzeTask();
+            boolean isSuccess = esp32ConfigService.updateEsp32Config(esp32Config);
+
+            if (isSuccess) {
+                System.out.println("\nUpdate timeout for data analysis task: " + seconds + "s");
+                dataAnalysisTask.restartAnalyzeTask();
+            }
 
             return ResponseJSON.ok("Success");
         } catch (Exception e) {

@@ -28,6 +28,7 @@ public class WebSocketController {
         String responseEsp32 = ResponseJSON.socketOk("Turn on LED", Constants.LED_ON);
 
         try {
+            System.out.println("\nUpdate ESP32 config: LED_ON");
             webSocketConfig.sendToESP32(responseEsp32);
             Esp32Config esp32Config = esp32ConfigService.getEsp32Config();
             esp32Config.setLedStatus(1);
@@ -44,6 +45,7 @@ public class WebSocketController {
         String responseEsp32 = ResponseJSON.socketOk("Turn off LED", Constants.LED_OFF);
 
         try {
+            System.out.println("\nUpdate ESP32 config: LED_OFF");
             webSocketConfig.sendToESP32(responseEsp32);
             Esp32Config esp32Config = esp32ConfigService.getEsp32Config();
             esp32Config.setLedStatus(0);
@@ -60,6 +62,7 @@ public class WebSocketController {
         String responseEsp32 = ResponseJSON.socketOk("Turn on LCD", Constants.LCD_ON);
 
         try {
+            System.out.println("\nUpdate ESP32 config: LCD_ON");
             webSocketConfig.sendToESP32(responseEsp32);
             Esp32Config esp32Config = esp32ConfigService.getEsp32Config();
             esp32Config.setLcdStatus(1);
@@ -76,6 +79,7 @@ public class WebSocketController {
         String responseEsp32 = ResponseJSON.socketOk("Turn off LCD", Constants.LCD_OFF);
 
         try {
+            System.out.println("\nUpdate ESP32 config: LCD_OFF");
             webSocketConfig.sendToESP32(responseEsp32);
             Esp32Config esp32Config = esp32ConfigService.getEsp32Config();
             esp32Config.setLcdStatus(0);
@@ -92,7 +96,9 @@ public class WebSocketController {
         String responseEsp32 = ResponseJSON.socketOk(message, Constants.NOTIFY);
 
         try {
+            System.out.println("\nSend notify to ESP32: " + message);
             webSocketConfig.sendToESP32(responseEsp32);
+
             return ResponseJSON.ok("Notify to LCD success");
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -103,7 +109,9 @@ public class WebSocketController {
     public ResponseEntity<?> changeRefreshDataTime(@RequestParam Long millisecond) {
         try {
             if (Objects.nonNull(millisecond) && millisecond > 0) {
-                String responseEsp32 = ResponseJSON.socketOk(String.valueOf(millisecond), Constants.CHANGE_REFRESH_TIME);
+                String responseEsp32 = ResponseJSON.socketOk(millisecond.toString(), Constants.CHANGE_REFRESH_TIME);
+
+                System.out.println("\nUpdate ESP32 config: refresh time of DTH11 = " + millisecond + "ms");
                 webSocketConfig.sendToESP32(responseEsp32);
 
                 Esp32Config esp32Config = esp32ConfigService.getEsp32Config();

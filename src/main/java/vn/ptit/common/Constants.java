@@ -3,6 +3,7 @@ package vn.ptit.common;
 public interface Constants {
 
     // LED color constants
+    Integer LED_NORMAL = 0;
     Integer LED_WARNING = 1;
 
     // Action to ESP32 constants
