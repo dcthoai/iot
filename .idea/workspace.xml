@@ -5,21 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5750f558-4a7d-40be-81ce-46ebe4d00f95" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/Esp32ConfigDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/model/Esp32Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/Esp32ConfigRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/Esp32ConfigRepositoryCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/impl/Esp32ConfigRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/IEsp32Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/Esp32ConfigService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/common/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/common/Common.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/common/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/common/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/ESP32WebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/ESP32WebSocketHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/DataAnalysisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/DataAnalysisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/ISensorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/ISensorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/chart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
@@ -130,7 +122,8 @@
       <workItem from="1728738092887" duration="11987000" />
       <workItem from="1728777232267" duration="16561000" />
       <workItem from="1728809606546" duration="12447000" />
-      <workItem from="1728829638707" duration="8602000" />
+      <workItem from="1728829638707" duration="8721000" />
+      <workItem from="1728864439117" duration="9821000" />
     </task>
     <servers />
   </component>

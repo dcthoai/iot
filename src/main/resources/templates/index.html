@@ -66,28 +66,28 @@
             <div class="w-100 mt-5 pb-3">
                 <h2 class="mb-4">Kết quả phân tích dữ liệu</h2>
                 <div class="data-field">
-                    <strong>Nhiệt độ trung bình: </strong> <span id="avgTemperature">Loading...</span>
+                    <strong>Nhiệt độ trung bình: </strong> <span id="avgTemperature">Không có dữ liệu</span>
                 </div>
                 <div class="data-field">
-                    <strong>Độ ẩm trung bình: </strong> <span id="avgHumidity">Loading...</span>
+                    <strong>Độ ẩm trung bình: </strong> <span id="avgHumidity">Không có dữ liệu</span>
                 </div>
                 <div class="data-field">
-                    <strong>Nhiệt độ cao nhất:</strong> <span id="maxTemperature">Loading...</span>
+                    <strong>Nhiệt độ cao nhất:</strong> <span id="maxTemperature">Không có dữ liệu</span>
                 </div>
                 <div class="data-field">
-                    <strong>Nhiệt độ thấp nhất:</strong> <span id="minTemperature">Loading...</span>
+                    <strong>Nhiệt độ thấp nhất:</strong> <span id="minTemperature">Không có dữ liệu</span>
                 </div>
                 <div class="data-field">
-                    <strong>Độ ẩm cao nhất:</strong> <span id="maxHumidity">Loading...</span>
+                    <strong>Độ ẩm cao nhất:</strong> <span id="maxHumidity">Không có dữ liệu</span>
                 </div>
                 <div class="data-field">
-                    <strong>Độ ẩm thấp nhất:</strong> <span id="minHumidity">Loading...</span>
+                    <strong>Độ ẩm thấp nhất:</strong> <span id="minHumidity">Không có dữ liệu</span>
                 </div>
                 <div class="data-field">
-                    <strong>Thời gian bắt đầu của dữ liệu phân tích:</strong> <span id="firstTimeAnalysis">Loading...</span>
+                    <strong>Thời gian bắt đầu của dữ liệu phân tích:</strong> <span id="firstTimeAnalysis">Không có dữ liệu</span>
                 </div>
                 <div class="data-field">
-                    <strong>Thời gian kết thúc của dữ liệu phân tích:</strong> <span id="lastTimeAnalysis">Loading...</span>
+                    <strong>Thời gian kết thúc của dữ liệu phân tích:</strong> <span id="lastTimeAnalysis">Không có dữ liệu</span>
                 </div>
             </div>
         </section>
@@ -139,6 +139,7 @@
 
     <script th:inline="javascript">
         const BASE_URL = /*[[${RESOURCES_URL}]]*/ '';
+        let timeRefreshDataInterval = 5000;
     </script>
 
     <script th:src="${RESOURCES_URL} + 'assets/js/bootstrap.bundle.min.js'"></script>

@@ -15,9 +15,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,7 +23,6 @@ public class SensorService implements ISensorService {
 
     private final SensorRepository sensorRepository;
     private Integer ledLevelAction = 1;
-    private String analyzeListData;
     private Long timeAnalyze;
 
     public SensorService(SensorRepository sensorRepository) {
@@ -41,17 +38,56 @@ public class SensorService implements ISensorService {
         return sensorResult.getId();
     }
 
-    public List<SensorDataDTO> getAveragedData(Timestamp fromDate, Timestamp toDate, Integer durationTime, Integer type) {
+    private Map<String, Object> getTimeByType(Integer type) {
+        Map<String, Object> times = new HashMap<>();
+
+        ZonedDateTime zonedToDate = ZonedDateTime.now();
+        ZonedDateTime zonedFromDate;
+        Timestamp toDate = Timestamp.from(Instant.now());
+        Timestamp fromDate = toDate;
+        Integer durationTime = 5;
+
+        switch (type) {
+            case 1:
+                zonedFromDate = zonedToDate.minusHours(1);
+                fromDate = Timestamp.from(zonedFromDate.toInstant());
+                durationTime = Constants.ANALYZE_LAST_HOUR;
+                break;
+            case 2:
+                zonedFromDate = zonedToDate.minusDays(1);
+                fromDate = Timestamp.from(zonedFromDate.toInstant());
+                durationTime = Constants.ANALYZE_LAST_DAY;
+                break;
+            case 3:
+                zonedFromDate = zonedToDate.minusWeeks(1);
+                fromDate = Timestamp.from(zonedFromDate.toInstant());
+                durationTime = Constants.ANALYZE_LAST_WEEK;
+                break;
+            case 4:
+                zonedFromDate = zonedToDate.minusMonths(1);
+                fromDate = Timestamp.from(zonedFromDate.toInstant());
+                durationTime = Constants.ANALYZE_LAST_MONTH;
+                break;
+        }
+
+        times.put("fromDate", fromDate);
+        times.put("toDate", toDate);
+        times.put("durationTime", durationTime);
+
+        return times;
+    }
+
+    private List<SensorDataDTO> getAveragedData(Timestamp fromDate, Timestamp toDate, Integer durationTime, Integer type) {
         String fromDateStr = Common.convertTimestampToString(fromDate);
         String toDateStr = Common.convertTimestampToString(toDate);
         List<Sensor> sensors = sensorRepository.getSensorDataByDate(fromDateStr, toDateStr);
         List<SensorDataDTO> averagedDataList = new ArrayList<>();
 
         // Convert Timestamp to Instant for processing
-        Instant currentTime = fromDate.toInstant();
+        Instant currentTime = fromDate.toInstant().plus(durationTime, ChronoUnit.MINUTES);
         Instant toDateInstant = toDate.toInstant();
 
-        while (currentTime.isBefore(toDateInstant) || !currentTime.isAfter(toDateInstant)) {
+        while (!currentTime.isAfter(toDateInstant)) {
             Instant finalCurrentTime = currentTime;
             Instant nextTime = currentTime.plus(durationTime, ChronoUnit.MINUTES);
 
@@ -82,12 +118,18 @@ public class SensorService implements ISensorService {
                     .orElse(Double.NaN);
 
             // Save average data
-            if (!dataForDuration.isEmpty()) {
-                SensorDataDTO averagedData = new SensorDataDTO();
+            SensorDataDTO averagedData = new SensorDataDTO();
 
-                averagedData.setTemperature((float) avgTemperature);
-                averagedData.setHumidity((float) avgHumidity);
+            if (!dataForDuration.isEmpty()) {
+                averagedData.setTemperature(Double.isNaN(avgTemperature) ? null : avgTemperature);
+                averagedData.setHumidity(Double.isNaN(avgHumidity) ? null : avgHumidity);
                 averagedData.setCreatedDate(dataForDuration.get(0).getCreatedDate());
+
+                averagedDataList.add(averagedData);
+            } else {
+                averagedData.setTemperature(null);
+                averagedData.setHumidity(null);
+                averagedData.setCreatedDate(null);
 
                 averagedDataList.add(averagedData);
             }
@@ -101,47 +143,16 @@ public class SensorService implements ISensorService {
 
     @Override
     public List<SensorDataDTO> getDataStatistic(Integer type) {
-        ZonedDateTime zonedToDate = ZonedDateTime.now();
-        ZonedDateTime zonedFromDate;
+        Map<String, Object> times = getTimeByType(type);
 
-        Timestamp toDate = Timestamp.from(Instant.now());
-        Timestamp fromDate = toDate;
-        Integer durationTime = 5;
-
-        switch (type) {
-            case 1:
-                zonedFromDate = zonedToDate.minusHours(1);
-                fromDate = Timestamp.from(zonedFromDate.toInstant());
-                durationTime = Constants.ANALYZE_LAST_HOUR;
-                break;
-            case 2:
-                zonedFromDate = zonedToDate.minusDays(1);
-                fromDate = Timestamp.from(zonedFromDate.toInstant());
-                durationTime = Constants.ANALYZE_LAST_DAY;
-                break;
-            case 3:
-                zonedFromDate = zonedToDate.minusWeeks(1);
-                fromDate = Timestamp.from(zonedFromDate.toInstant());
-                durationTime = Constants.ANALYZE_LAST_WEEK;
-                break;
-            case 4:
-                zonedFromDate = zonedToDate.minusMonths(1);
-                fromDate = Timestamp.from(zonedFromDate.toInstant());
-                durationTime = Constants.ANALYZE_LAST_MONTH;
-                break;
-        }
-
-        analyzeListData = analyzeData(fromDate.toString(), toDate.toString());
+        Integer durationTime = (Integer) times.get("durationTime");
+        Timestamp fromDate = (Timestamp) times.get("fromDate");
+        Timestamp toDate = (Timestamp) times.get("toDate");
 
         return getAveragedData(fromDate, toDate, durationTime, type);
     }
 
-    public String getAnalyzeListData() {
-        return analyzeListData;
-    }
-
-    @Override
-    public String analyzeData(String fromDate, String toDate) {
+    private String analyzeData(String fromDate, String toDate) {
         List<Sensor> sensorsDataList = sensorRepository.getSensorDataByDate(fromDate, toDate);
 
         if (sensorsDataList == null || sensorsDataList.isEmpty()) {
@@ -199,6 +210,16 @@ public class SensorService implements ISensorService {
         analysisResult.put("lastTimeAnalysis", Common.convertTimestampToString(lastTimeAnalysis, "HH:mm:ss dd/MM/yyyy"));
 
         return analysisResult.toString();
+    }
+
+    @Override
+    public String getAnalyzeListData(Integer type) {
+        Map<String, Object> times = getTimeByType(type);
+
+        Timestamp fromDate = (Timestamp) times.get("fromDate");
+        Timestamp toDate = (Timestamp) times.get("toDate");
+
+        return analyzeData(fromDate.toString(), toDate.toString());
     }
 
     @Override

@@ -10,7 +10,7 @@ public interface ISensorService {
 
     List<SensorDataDTO> getDataStatistic(Integer type);
 
-    String analyzeData(String fromDate, String toDate);
+    public String getAnalyzeListData(Integer type);
 
     String getWeatherForecast();
 }

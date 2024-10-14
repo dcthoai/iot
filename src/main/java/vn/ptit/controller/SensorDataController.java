@@ -30,7 +30,7 @@ public class SensorDataController {
     }
 
     @GetMapping("/analyze")
-    public String getDataAnalyze() {
-        return sensorService.getAnalyzeListData();
+    public String getDataAnalyze(@RequestParam Integer type) {
+        return sensorService.getAnalyzeListData(type);
     }
 }

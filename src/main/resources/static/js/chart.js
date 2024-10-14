@@ -1,11 +1,6 @@
 const temperatureChartElement = document.getElementById('temperatureChart').getContext('2d');
 const humidityChartElement = document.getElementById('humidityChart').getContext('2d');
 const selectElement = document.getElementById('timePeriod');
-const chartDataLabels = {
-    hour: ['0', '5p', '10p', '15p', '20p', '25p', '30p', '35p', '40p', '45p', '50p', '55p', '1h'],
-    day: ['0h', '2h', '4h', '6h', '8h', '10h', '12h', '14h', '16h', '18h', '20h', '22h', '24h'],
-    week: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'CN']
-}
 
 function getChartOptions(chartType, chartLabel, dataLabel, chartData, background, border) {
     return {
@@ -42,6 +37,42 @@ function getChartOptions(chartType, chartLabel, dataLabel, chartData, background
             }
         }
     };
+}
+
+function getPreviousTimesByUnit(interval, count, unit) {
+    const timesArray = ['Hiện tại'];
+    const now = new Date();
+
+    for (let i = 1; i <= count; i++) {
+        if (i % 2 !== 0 && unit !== 'week') {
+            timesArray.push('');
+            continue;
+        }
+
+        const time = new Date(now);
+
+        if (unit === 'hour') {
+            time.setMinutes(now.getMinutes() - (i * interval));
+        } else if (unit === 'day') {
+            time.setHours(now.getHours() - (i * interval));
+        } else {
+            time.setDate(now.getDate() - (i * interval));
+        }
+
+        if (unit === 'hour' || unit === 'day') {
+            const hours = time.getHours().toString().padStart(2, '0');
+            const minutes = time.getMinutes().toString().padStart(2, '0');
+
+            timesArray.push(`${hours}:${minutes}`);
+        } else {
+            const month = (time.getMonth() + 1).toString().padStart(2, '0');
+            const day = time.getDate().toString().padStart(2, '0');
+
+            timesArray.push(`${month}-${day}`);
+        }
+    }
+
+    return timesArray.reverse();
 }
 
 function getMonthsAndDays(year) {
@@ -85,29 +116,60 @@ let humidityChart;
 let temperatureChartOptions = {};
 let humidityChartOptions = {};
 
-// Function to fetch analysis data from the API
-async function fetchAnalysisData() {
-    console.log("Fetch data.");
+const avgTemperature = document.getElementById('avgTemperature');
+const avgHumidity = document.getElementById('avgHumidity');
+const maxTemperature = document.getElementById('maxTemperature');
+const minTemperature = document.getElementById('minTemperature');
+const maxHumidity = document.getElementById('maxHumidity');
+const minHumidity = document.getElementById('minHumidity');
+const firstTimeAnalysis = document.getElementById('firstTimeAnalysis');
+const lastTimeAnalysis = document.getElementById('lastTimeAnalysis');
+let refreshAnalyzeDataInterval;
 
+// Function to fetch analysis data from the API
+async function fetchAnalysisData(type) {
     try {
-        const response = await fetch(BASE_URL + `api/statistic/analyze`);
+        const response = await fetch(BASE_URL + `api/statistic/analyze?type=${type}`);
 
         if (response.ok) {
             const analysisResult = await response.json();
 
-            document.getElementById('avgTemperature').innerHTML = analysisResult.avgTemperature + ' °C';
-            document.getElementById('avgHumidity').innerHTML = analysisResult.avgHumidity + ' %';
-            document.getElementById('maxTemperature').innerHTML = analysisResult.maxTemperature + ' °C';
-            document.getElementById('minTemperature').innerHTML = analysisResult.minTemperature + ' °C';
-            document.getElementById('maxHumidity').innerHTML = analysisResult.maxHumidity + ' %';
-            document.getElementById('minHumidity').innerHTML = analysisResult.minHumidity + ' %';
-            document.getElementById('firstTimeAnalysis').innerHTML = analysisResult.firstTimeAnalysis;
-            document.getElementById('lastTimeAnalysis').innerHTML = analysisResult.lastTimeAnalysis;
+            avgTemperature.innerHTML = analysisResult.avgTemperature + ' °C';
+            avgHumidity.innerHTML = analysisResult.avgHumidity + ' %';
+            maxTemperature.innerHTML = analysisResult.maxTemperature + ' °C';
+            minTemperature.innerHTML = analysisResult.minTemperature + ' °C';
+            maxHumidity.innerHTML = analysisResult.maxHumidity + ' %';
+            minHumidity.innerHTML = analysisResult.minHumidity + ' %';
+            firstTimeAnalysis.innerHTML = analysisResult.firstTimeAnalysis;
+            lastTimeAnalysis.innerHTML = analysisResult.lastTimeAnalysis;
         } else {
+            avgTemperature.innerHTML = 'Không có dữ liệu';
+            avgHumidity.innerHTML = 'Không có dữ liệu';
+            maxTemperature.innerHTML = 'Không có dữ liệu';
+            minTemperature.innerHTML = 'Không có dữ liệu';
+            maxHumidity.innerHTML = 'Không có dữ liệu';
+            minHumidity.innerHTML = 'Không có dữ liệu';
+            firstTimeAnalysis.innerHTML = 'Không có dữ liệu';
+            lastTimeAnalysis.innerHTML = 'Không có dữ liệu';
             console.error('Failed to fetch data from the server.');
         }
     } catch (error) {
         console.error('Error:', error);
+    }
+}
+
+async function updateChart(type) {
+    const response = await getDataStatistic(type);
+
+    if (response && response.success) {
+        const temperatures = response.data.map(entry => entry.temperature);
+        const humidity = response.data.map(entry => entry.humidity);
+
+        temperatureChartOptions.data.datasets[0].data = temperatures;
+        humidityChartOptions.data.datasets[0].data = humidity;
+
+        temperatureChart.update();
+        humidityChart.update();
     }
 }
 
@@ -117,12 +179,18 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (response && response.success) {
         const temperatures = response.data.map(entry => entry.temperature);
         const humidity = response.data.map(entry => entry.humidity);
-        fetchAnalysisData();
+        const labels = getPreviousTimesByUnit(5, 12, 'hour');
+
+        // Auto update data of chart
+        refreshAnalyzeDataInterval = setInterval(() => {
+            fetchAnalysisData(1);
+            updateChart(1);
+        }, timeRefreshDataInterval);
 
         temperatureChartOptions = getChartOptions(
             'line',
             'Nhiệt độ (°C)',
-            chartDataLabels.hour,
+            labels,
             temperatures,
             'rgb(255, 13, 13)',
             'rgb(255, 13, 13)'
@@ -131,7 +199,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         humidityChartOptions = getChartOptions(
             'bar',
             'Độ ẩm (%)',
-            chartDataLabels.hour,
+            labels,
             humidity,
             'rgba(0, 135, 206, 0.5)',
             'rgb(0, 135, 206)'
@@ -148,6 +216,13 @@ selectElement.addEventListener('change', async function() {
     const selectedValue = this.value;
     const response = await getDataStatistic(selectedValue);
 
+    // Auto update data of chart
+    clearInterval(refreshAnalyzeDataInterval);
+    refreshAnalyzeDataInterval = setInterval(() => {
+        fetchAnalysisData(selectedValue);
+        updateChart(selectedValue);
+    }, timeRefreshDataInterval);
+
     if (response && response.success) {
         const temperatures = response.data.map(entry => entry.temperature);
         const humidity = response.data.map(entry => entry.humidity);
@@ -155,21 +230,27 @@ selectElement.addEventListener('change', async function() {
         temperatureChartOptions.data.datasets[0].data = temperatures;
         humidityChartOptions.data.datasets[0].data = humidity;
 
-        if (selectedValue == 1) {
-            humidityChartOptions.data.labels = chartDataLabels.hour;
-            temperatureChartOptions.data.labels = chartDataLabels.hour;
-        } else if (selectedValue == 2) {
-            humidityChartOptions.data.labels = chartDataLabels.day;
-            temperatureChartOptions.data.labels = chartDataLabels.day;
-        } else if (selectedValue == 3) {
-            humidityChartOptions.data.labels = chartDataLabels.week;
-            temperatureChartOptions.data.labels = chartDataLabels.week;
-        } else if (selectedValue == 4) {
+        if (selectedValue === '1') {
+            const hourLabels = getPreviousTimesByUnit(5, 12, 'hour');
+            humidityChartOptions.data.labels = hourLabels;
+            temperatureChartOptions.data.labels = hourLabels;
+        } else if (selectedValue === '2') {
+            const dayLabels = getPreviousTimesByUnit(2, 12, 'day');
+            humidityChartOptions.data.labels = dayLabels;
+            temperatureChartOptions.data.labels = dayLabels;
+        } else if (selectedValue === '3') {
+            const weekLabels = getPreviousTimesByUnit(1, 6, 'week');
+            humidityChartOptions.data.labels = weekLabels;
+            temperatureChartOptions.data.labels = weekLabels;
+        } else if (selectedValue === '4') {
             const currentDate = new Date();
             const currentYear = currentDate.getFullYear();
             const currentMonth = currentDate.getMonth() + 1;
-            humidityChartOptions.data.labels = getMonthsAndDays(currentYear)[currentMonth];
-            temperatureChartOptions.data.labels = getMonthsAndDays(currentYear)[currentMonth];
+            const monthDays = getMonthsAndDays(currentYear)[currentMonth];
+            const monthLabels = getPreviousTimesByUnit(1, monthDays.length - 1, 'month');
+
+            humidityChartOptions.data.labels = monthLabels;
+            temperatureChartOptions.data.labels = monthLabels;
         }
 
         temperatureChart.update();

@@ -1,7 +1,9 @@
 package vn.ptit.controller;
 
 import com.google.gson.Gson;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -151,7 +153,7 @@ public class WebSocketController {
             esp32ConfigDTO.setTimeRefreshData(esp32Config.getTimeRefresh());
             esp32ConfigDTO.setTimeAnalyze(esp32Config.getTimeAnalyze());
 
-            return ResponseJSON.ok("Success", new Gson().toJson(esp32ConfigDTO));
+            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(new Gson().toJson(esp32ConfigDTO));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseJSON.badRequest("Failed to get esp32 config");

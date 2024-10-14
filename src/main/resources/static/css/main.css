@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+@media (min-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: 1400px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+}
+
 .button {
     display: inline-block;
     padding: 4px 12px;

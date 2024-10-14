@@ -17,6 +17,28 @@
 //     });
 // });
 
+const ledStatusElement = document.getElementById('led-status');
+const lcdStatusElement = document.getElementById('lcd-status');
+const timeRefreshData = document.getElementById('refreshTime');
+const analyzeTime = document.getElementById('analyzeTime');
+
+function getEsp32Config() {
+    fetch(BASE_URL + 'api/esp32/config')
+        .then(response => response.json())
+        .then(data => {
+            ledStatusElement.innerHTML = data.ledStatus == 1 ? 'Bật' : 'Tắt';
+            lcdStatusElement.innerHTML = data.lcdStatus == 1 ? 'Bật' : 'Tắt';
+            timeRefreshData.value = data.timeRefreshData;
+            analyzeTime.value = data.timeAnalyze;
+
+            timeRefreshDataInterval = parseInt(data.timeRefreshData);
+            console.log(timeRefreshDataInterval);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
 function sendRequest(url) {
     fetch(BASE_URL + url, {
         method: 'POST',
@@ -27,6 +49,7 @@ function sendRequest(url) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            getEsp32Config();
             openPopupNotify('Cập nhật thành công', '', 'success');
         } else {
             openPopupNotify('Thất bại', data.message, 'error');
@@ -79,6 +102,7 @@ function changeRefreshTime() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            getEsp32Config();
             openPopupNotify('Cập nhật thành công', '', 'success');
         } else {
             openPopupNotify('Thất bại', data.message, 'error');
@@ -105,6 +129,7 @@ function changeAnalyzeTime() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            getEsp32Config();
             openPopupNotify('Cập nhật thành công', '', 'success');
         } else {
             openPopupNotify('Thất bại', data.message, 'error');
@@ -115,3 +140,5 @@ function changeAnalyzeTime() {
         console.log(error);
     });
 }
+
+getEsp32Config();
