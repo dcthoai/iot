@@ -1,19 +1,14 @@
 package vn.ptit.controller;
 
-import com.google.gson.Gson;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import vn.ptit.common.Constants;
 import vn.ptit.config.WebSocketConfig;
-import vn.ptit.dto.response.Esp32ConfigDTO;
 import vn.ptit.dto.response.ResponseJSON;
 import vn.ptit.model.Esp32Config;
-import vn.ptit.service.impl.DataAnalysisTask;
 import vn.ptit.service.impl.Esp32ConfigService;
 
 import java.util.Objects;
@@ -27,9 +22,6 @@ public class WebSocketController {
 
     @Autowired
     private Esp32ConfigService esp32ConfigService;
-
-    @Autowired
-    private DataAnalysisTask dataAnalysisTask;
 
     @PostMapping("/led/on")
     public ResponseEntity<?> turnOnLedESP32() {
@@ -124,39 +116,6 @@ public class WebSocketController {
             return ResponseJSON.badRequest("Missing millisecond from request");
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    @PostMapping("/change-time-analyze")
-    public ResponseEntity<?> changeTimeAnalyze(@RequestParam Long seconds) {
-        try {
-            Esp32Config esp32Config = esp32ConfigService.getEsp32Config();
-            esp32Config.setTimeAnalyze(seconds);
-            esp32ConfigService.updateEsp32Config(esp32Config);
-
-            dataAnalysisTask.restartAnalyzeTask();
-            return ResponseJSON.ok("Success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseJSON.serverError("Failed to change. ");
-        }
-    }
-
-    @GetMapping("/config")
-    public ResponseEntity<?> getEsp32Config() {
-        try {
-            Esp32Config esp32Config = esp32ConfigService.getEsp32Config();
-            Esp32ConfigDTO esp32ConfigDTO = new Esp32ConfigDTO();
-
-            esp32ConfigDTO.setLcdStatus(esp32Config.getLcdStatus());
-            esp32ConfigDTO.setLedStatus(esp32Config.getLedStatus());
-            esp32ConfigDTO.setTimeRefreshData(esp32Config.getTimeRefresh());
-            esp32ConfigDTO.setTimeAnalyze(esp32Config.getTimeAnalyze());
-
-            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(new Gson().toJson(esp32ConfigDTO));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseJSON.badRequest("Failed to get esp32 config");
         }
     }
 }

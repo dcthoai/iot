@@ -1,29 +1,10 @@
-// const logoutAdminButton = document.getElementById('logout-admin-button');
-//
-// logoutAdminButton.addEventListener('click', () => {
-//     fetch(BASE_URL + `api/auth/logout`, {
-//         method: 'POST'
-//     })
-//     .then(response => response.json())
-//     .then(status => {
-//         if (status.success)
-//             window.location.href = BASE_URL + 'admin';
-//         else
-//             openPopupNotify('Thất bại', status.message, 'error');
-//     })
-//     .catch(error => {
-//         openPopupNotify('Thất bại', error.message, 'error');
-//         console.error(error);
-//     });
-// });
-
 const ledStatusElement = document.getElementById('led-status');
 const lcdStatusElement = document.getElementById('lcd-status');
 const timeRefreshData = document.getElementById('refreshTime');
 const analyzeTime = document.getElementById('analyzeTime');
 
 function getEsp32Config() {
-    fetch(BASE_URL + 'api/esp32/config')
+    fetch(BASE_URL + 'api/sensor/config')
         .then(response => response.json())
         .then(data => {
             ledStatusElement.innerHTML = data.ledStatus == 1 ? 'Bật' : 'Tắt';
@@ -117,7 +98,7 @@ function changeRefreshTime() {
 function changeAnalyzeTime() {
     const analyzeTime = document.getElementById('analyzeTime').value;
 
-    fetch(BASE_URL + 'api/esp32/change-time-analyze', {
+    fetch(BASE_URL + 'api/sensor/change-time-analyze', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

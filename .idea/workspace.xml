@@ -6,7 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="5750f558-4a7d-40be-81ce-46ebe4d00f95" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/request/UserRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/Esp32ConfigRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/Esp32ConfigRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/Esp32ConfigRepositoryCustom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/SensorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/SensorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/UserRepositoryCustom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/impl/Esp32ConfigRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/repository/impl/UserRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/security/AuthEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/security/AuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/login.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/chart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/validator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +70,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.IOTApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.IOTApplication.executor&quot;: &quot;Debug&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Workspaces/Projects/SoftDreams/CIC/adminweb&quot;,
@@ -116,7 +137,9 @@
       <workItem from="1728809606546" duration="12447000" />
       <workItem from="1728829638707" duration="8721000" />
       <workItem from="1728864439117" duration="9821000" />
-      <workItem from="1728874516733" duration="2578000" />
+      <workItem from="1728874516733" duration="2657000" />
+      <workItem from="1728887504302" duration="24000" />
+      <workItem from="1728914544027" duration="2075000" />
     </task>
     <servers />
   </component>

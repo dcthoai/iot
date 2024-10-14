@@ -115,8 +115,7 @@ function getMonthsAndDays(year) {
 }
 
 async function getStatisticData(type) {
-    const url = BASE_URL + `api/statistic?type=${type}`;
-    let response = await fetch(url);
+    let response = await fetch(BASE_URL + `api/sensor/statistic-data?type=${type}`);
 
     if (response.ok) {
         response = await response.json();
@@ -129,7 +128,7 @@ async function getStatisticData(type) {
 // Function to fetch analysis data from the API
 async function getAnalysisData(type) {
     try {
-        const response = await fetch(BASE_URL + `api/statistic/analyze?type=${type}`);
+        const response = await fetch(BASE_URL + `api/sensor/analyze?type=${type}`);
 
         if (response.ok) {
             const analysisResult = await response.json();
