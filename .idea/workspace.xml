@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5750f558-4a7d-40be-81ce-46ebe4d00f95" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/ISensorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/ISensorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/chart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +116,7 @@
       <workItem from="1728809606546" duration="12447000" />
       <workItem from="1728829638707" duration="8721000" />
       <workItem from="1728864439117" duration="9821000" />
+      <workItem from="1728874516733" duration="2578000" />
     </task>
     <servers />
   </component>
