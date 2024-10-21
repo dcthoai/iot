@@ -6,14 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5750f558-4a7d-40be-81ce-46ebe4d00f95" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/common/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/common/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/ESP32WebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/ESP32WebSocketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/SensorDataController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/DataAnalysisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/DataAnalysisTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +52,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.IOTApplication.executor": "Run",
+    "Spring Boot.IOTApplication.executor": "Debug",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Workspaces/Projects/SoftDreams/CIC/adminweb",
@@ -126,6 +122,9 @@
       <workItem from="1728874516733" duration="2657000" />
       <workItem from="1728887504302" duration="24000" />
       <workItem from="1728914544027" duration="2075000" />
+      <workItem from="1728955487707" duration="4952000" />
+      <workItem from="1728960927410" duration="3116000" />
+      <workItem from="1729517356743" duration="1165000" />
     </task>
     <servers />
   </component>

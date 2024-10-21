@@ -12,6 +12,12 @@ public class SensorDataDTO {
 
     public SensorDataDTO() {}
 
+    public SensorDataDTO(Double temperature, Double humidity, String createdDate) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.createdDate = createdDate;
+    }
+
     public Double getTemperature() {
         return temperature;
     }

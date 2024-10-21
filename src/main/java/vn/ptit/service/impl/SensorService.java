@@ -83,8 +83,11 @@ public class SensorService implements ISensorService {
         List<Sensor> sensors = sensorRepository.getSensorDataByDate(fromDateStr, toDateStr);
         List<SensorDataDTO> averagedDataList = new ArrayList<>();
 
+        if (type == 1 || type == 2)
+            averagedDataList.add(new SensorDataDTO(null, null, null));
+
         // Convert Timestamp to Instant for processing
-        Instant currentTime = fromDate.toInstant().plus(durationTime, ChronoUnit.MINUTES);
+        Instant currentTime = fromDate.toInstant();
         Instant toDateInstant = toDate.toInstant();
 
         while (!currentTime.isAfter(toDateInstant)) {
@@ -137,6 +140,9 @@ public class SensorService implements ISensorService {
             // Continue with next time
             currentTime = nextTime;
         }
+
+        if (type == 3)
+            averagedDataList.remove(0);
 
         return averagedDataList;
     }
@@ -219,7 +225,13 @@ public class SensorService implements ISensorService {
         Timestamp fromDate = (Timestamp) times.get("fromDate");
         Timestamp toDate = (Timestamp) times.get("toDate");
 
-        return analyzeData(fromDate.toString(), toDate.toString());
+        try {
+            return analyzeData(fromDate.toString(), toDate.toString());
+        } catch (Exception e) {
+            System.out.println("Failed to analyze data.");
+            e.printStackTrace();
+            return "";
+        }
     }
 
     @Override

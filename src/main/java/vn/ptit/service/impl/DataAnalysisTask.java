@@ -90,7 +90,8 @@ public class DataAnalysisTask {
 
                     System.out.println("\nSend notify to ESP32 after analyze data: " + message + "\n");
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Failed to send notify to ESP32!");
+                    e.printStackTrace();
                 }
             }
         }
@@ -109,7 +110,8 @@ public class DataAnalysisTask {
                     else
                         System.out.println("Send config to ESP32: " + message);
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Failed to get ESP32 config from database!");
+                    e.printStackTrace();
                 }
             }
         }

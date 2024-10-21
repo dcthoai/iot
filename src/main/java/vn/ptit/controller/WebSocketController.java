@@ -36,7 +36,8 @@ public class WebSocketController {
 
             return ResponseJSON.ok("Turn on LED success");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return ResponseJSON.serverError("Failed to turn on LED");
         }
     }
 
@@ -53,7 +54,8 @@ public class WebSocketController {
 
             return ResponseJSON.ok("Turn off LED success");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return ResponseJSON.serverError("Failed to turn off LED");
         }
     }
 
@@ -70,7 +72,8 @@ public class WebSocketController {
 
             return ResponseJSON.ok("Turn on LCD success");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return ResponseJSON.serverError("Failed to turn on LCD");
         }
     }
 
@@ -87,7 +90,8 @@ public class WebSocketController {
 
             return ResponseJSON.ok("Turn off LCD success");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return ResponseJSON.serverError("Failed to turn off LCD");
         }
     }
 
@@ -101,7 +105,8 @@ public class WebSocketController {
 
             return ResponseJSON.ok("Notify to LCD success");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return ResponseJSON.serverError("Failed to send notify to ESP32");
         }
     }
 
@@ -123,7 +128,8 @@ public class WebSocketController {
 
             return ResponseJSON.badRequest("Missing millisecond from request");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return ResponseJSON.serverError("Failed to change refresh data time for ESP32");
         }
     }
 }
