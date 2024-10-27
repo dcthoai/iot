@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5750f558-4a7d-40be-81ce-46ebe4d00f95" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/embedded/embedded.ino" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/controller/WebSocketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/dto/response/SensorDataDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/DataAnalysisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/DataAnalysisTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/ptit/service/impl/SensorService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +52,7 @@
     "Spring Boot.IOTApplication.executor": "Debug",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Workspaces/Projects/SoftDreams/CIC/adminweb",
+    "last_opened_file_path": "D:/Workspaces/Java/Web/SpringBoot/iot/embedded",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,6 +66,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\embedded" />
       <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\src\main\java\vn\ptit\security" />
       <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\src\main\resources\static\js" />
       <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\src\main\resources\static\css" />
@@ -124,7 +122,9 @@
       <workItem from="1728914544027" duration="2075000" />
       <workItem from="1728955487707" duration="4952000" />
       <workItem from="1728960927410" duration="3116000" />
-      <workItem from="1729517356743" duration="1165000" />
+      <workItem from="1729517356743" duration="2513000" />
+      <workItem from="1729521899073" duration="14000" />
+      <workItem from="1729995811239" duration="336000" />
     </task>
     <servers />
   </component>
