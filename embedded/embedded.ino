@@ -17,8 +17,8 @@ using namespace websockets;
 
 // LED control pin
 const int RED_PIN = 19;
-const int GREEN_PIN = 17;
-const int BLUE_PIN = 16;
+const int GREEN_PIN = 16;
+const int BLUE_PIN = 21;
 
 // Action execute when have request from Socket server
 const int LED_ON = 0;
@@ -39,12 +39,12 @@ unsigned long startTime;
 bool connectSocket = false;
 
 // SSID and password of WIFI to connect
-#define WIFI_NAME "your_wifi_name"
-#define WIFI_PASSWORD "your_wifi_password"
+#define WIFI_NAME "WIFI_NAME"
+#define WIFI_PASSWORD "WIFI_PASSWORD"
 
 // Socket server and ThinkSpeak cloud url
-String THINGSPEAK_SERVER_URL = "https://api.thingspeak.com/update?api_key=your_api_key";
-const char* WEBSOCKET_SERVER_URL = "ws://your_server_host_link/esp32";
+// String THINGSPEAK_SERVER_URL = "https://api.thingspeak.com/update?api_key=your_api_key";
+const char* WEBSOCKET_SERVER_URL = "ws://0.tcp.ap.ngrok.io:14775/esp32";
 
 WebsocketsClient client; // Start socket client
 TFT_eSPI tft = TFT_eSPI(); // Start LCD monitor
@@ -52,7 +52,7 @@ DHT dht(DHTPIN, DHTTYPE); // Start DHT11 sensor
 
 void lcdDisplay(String message, int x, int y, bool isClear) {
   if (isClear) {
-    tft.fillRect(0, 0, 160, 60, TFT_BLACK);; // Clear screen by filling it with black
+    tft.fillRect(0, 0, 160, 60, TFT_BLACK); // Clear screen by filling it with black
   }
 
   tft.setCursor(x, y);  // Set position to print
@@ -100,27 +100,27 @@ void connectWifi() {
   Serial.println("\nConnected to WiFi network with IP Address: " + WiFi.localIP().toString());
 }
 
-void uploadDataToCloud(float temp, float humidity) {
-  String url = THINGSPEAK_SERVER_URL + "&field1=" + temp + "&field2=" + humidity;
+// void uploadDataToCloud(float temp, float humidity) {
+//   String url = THINGSPEAK_SERVER_URL + "&field1=" + temp + "&field2=" + humidity;
 
-  HTTPClient http;
-  http.begin(url);
+//   HTTPClient http;
+//   http.begin(url);
 
-  int responseCode = http.GET();
-  String responseBody = http.getString();
+//   int responseCode = http.GET();
+//   String responseBody = http.getString();
 
-  if (responseCode > 0) {
-    Serial.println("Uploaded data to ThinkSpeak. Status: " + String(responseCode));
-  } else {
-    Serial.println("Failed to upload data. Error code: " + String(responseCode));
+//   if (responseCode > 0) {
+//     Serial.println("Uploaded data to ThinkSpeak. Status: " + String(responseCode));
+//   } else {
+//     Serial.println("Failed to upload data. Error code: " + String(responseCode));
 
-    if (responseBody.length() > 0) {
-      Serial.println("Response from server: " + responseBody);
-    }
-  }
+//     if (responseBody.length() > 0) {
+//       Serial.println("Response from server: " + responseBody);
+//     }
+//   }
 
-  http.end();
-}
+//   http.end();
+// }
 
 void uploadDataToWebServer(float temp, float humidity) {
   DynamicJsonDocument doc(1024);
@@ -153,7 +153,7 @@ void getSocketConnection() {
     // Parse JSON to data from response
     DynamicJsonDocument doc(1024);
     DeserializationError error = deserializeJson(doc, message.data());
-    
+
     if (error) {
       Serial.print("Error parsing JSON: ");
       Serial.println(error.c_str());
@@ -245,9 +245,9 @@ void loop() {
 
   if (millis() - startTime >= timeRefreshData) {
     startTime = millis();
-    
+
     if (!isnan(humidity) && !isnan(temperature)) {
-      uploadDataToCloud(temperature, humidity);
+      // uploadDataToCloud(temperature, humidity);
       
       if (connectSocket) {
         uploadDataToWebServer(temperature, humidity);

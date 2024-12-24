@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5750f558-4a7d-40be-81ce-46ebe4d00f95" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embedded/embedded.ino" beforeDir="false" afterPath="$PROJECT_DIR$/embedded/embedded.ino" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +52,9 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;Spring Boot.IOTApplication.executor&quot;: &quot;Debug&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Workspaces/Java/Web/SpringBoot/iot/embedded&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Workspaces/Java/Web/SpringBoot/iot&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -59,12 +62,13 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.32873562&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\src\main\resources\database" />
       <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\embedded" />
       <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\src\main\java\vn\ptit\security" />
       <recent name="D:\Workspaces\Java\Web\SpringBoot\iot\src\main\resources\static\js" />
@@ -90,6 +94,13 @@
         <item itemvalue="Spring Boot.IOTApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-11.0.16-jbr_dcevm-11.0.16-4caba194b151-788636e5" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -124,7 +135,12 @@
       <workItem from="1729517356743" duration="2513000" />
       <workItem from="1729521899073" duration="14000" />
       <workItem from="1729995811239" duration="421000" />
-      <workItem from="1732765033786" duration="320000" />
+      <workItem from="1732765033786" duration="1966000" />
+      <workItem from="1732775585319" duration="113000" />
+      <workItem from="1732800792558" duration="145000" />
+      <workItem from="1732890149845" duration="185000" />
+      <workItem from="1733826416012" duration="800000" />
+      <workItem from="1735007087569" duration="2100000" />
     </task>
     <servers />
   </component>
